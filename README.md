@@ -13,6 +13,8 @@ Available for download from GitHub: https://github.com/10XGenomics/janesick_natu
 ![image.png](figures/F1.large.jpg)
 
 
+## Synopsis
+This notebook demonstrates the registration of Xenium and Visium data from two serial formalin-fixed, paraffin-embedded (FFPE) human breast cancer sections. It first generates a number of explanatory figures showcasing the Xenium and Visium coordinate systems. It then visualizes how those coordinate systems relate to one another using a keypoint registration between the Xenium nuclear morphology image and the Visium H&E image generated using Xenium Explorer. The notebook then continues on using that registration to produce many of the analysis and panel figures from this publication including overlaying Xenium segmentation and cell typing data, spot interpolation of Xenium data into the Visium spot grid, transcript correlation analysis between Xenium and Visium data, and MLE celltype inference of Visium spots from Xenium data.      
 
 ## Quick start guide
 ### Install conda and setup the conda environment
@@ -27,7 +29,7 @@ conda --version
 ## https://github.com/10XGenomics/janesick_nature_comms_2023_companion
 
 ## create conda conda_environment
-conda env create -f environment.yaml
+conda env create -f environment.yml
 
 ## activate conda environment
 conda activate xenium-publication-env
@@ -56,7 +58,7 @@ mkdir visium
 cd visium
 curl -O https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Breast_Cancer/CytAssist_FFPE_Human_Breast_Cancer_filtered_feature_bc_matrix.h5
 curl -O https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Breast_Cancer/CytAssist_FFPE_Human_Breast_Cancer_spatial.tar.gz
-unzip CytAssist_FFPE_Human_Breast_Cancer_spatial.tar.gz
+tar -xf CytAssist_FFPE_Human_Breast_Cancer_spatial.tar.gz
 cd ..
 
 cd ..
@@ -65,8 +67,7 @@ cd ..
 The ```Cell_Barcode_Type_Matrices.xlsx``` contains all the annotation for the paper. For this analysis we will only make use of the supervised labeling from Xenium Sample 1, Replicate 1. Use ```SaveAs``` to save the ```Xenium R1 Fig1-5 (supervised)``` tab as a CSV file. We will refer to it in the code as the ```cell_groups.csv```. Move the ```cell_groups.csv``` into the ```xenium-publication``` directory we just created. 
 
 #### Define data paths
-The following file paths assume that the xenium-publication was created as described above in the user's $HOME directory.
-
+The following file paths assume that the xenium-publication was created as described above in the user's $HOME directory. If not, please be sure to change the paths accordingly.
 
 ```python
 from pathlib import Path
